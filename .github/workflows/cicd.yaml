@@ -20,10 +20,12 @@ jobs:
       - name: 'Checkout'
         uses: actions/checkout@v3
 
-      - name: Build & Run Go
+      - name: Use Go 1.19
         uses: actions/setup-go@v3
         with:
           go-version: 1.19
+
+      - name: 'Build & Run Go'
         run: |
           go build -o go-service go-service/go-service.go
           ./go-service &
