@@ -45,7 +45,6 @@ jobs:
       - name: 'Build & Run Node.js'
         working-directory: ./node-service
         run: |
-          npm install
           node service.js 
           sleep 5
 
