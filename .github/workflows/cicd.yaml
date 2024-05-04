@@ -29,7 +29,7 @@ jobs:
         run: |
           go build -o go-service go-service/main.go
           ./go-service &
-          sleep 5
+          sleep 15
 
       - name: 'Test Go'
         run: curl localhost:8080
