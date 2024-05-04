@@ -54,7 +54,7 @@ jobs:
           
       - name: 'Kill Node.js process'
         run: |
-          pkill -f node service.js
+          pkill -f service.js
 
   build-image:
     # if: github.event.pull_request.merged == true
@@ -63,9 +63,6 @@ jobs:
       - name: 'Checkout'
         uses: actions/checkout@v3
 
-      - name: 'Docker Hub Authentication'
-        run: echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin
-
       - name: 'Docker Image Build Go'
         working-directory: ./go-service
         run: docker build -t yogatrista/sre-test-pintu:go .
@@ -73,3 +70,17 @@ jobs:
       - name: 'Docker Image Build Node.js'
         working-directory: ./node-service
         run: docker build -t yogatrista/sre-test-pintu:node .
+
+      - name: 'Push Go Image to Docker Hub'
+        uses: docker/library@v3
+        with:
+          name: yogatrista/sre-test-pintu:go
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: 'Push Node Image to Docker Hub'
+        uses: docker/library@v3
+        with:
+          name: yogatrista/sre-test-pintu:node
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
