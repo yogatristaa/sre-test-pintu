@@ -43,8 +43,11 @@ jobs:
         run: killall main
 
       - name: 'Build & Run Node.js'
+        working-directory: ./node-service
         run: |
-          ls
+          npm install
+          node service.js 
+          sleep 5
 
       - name: 'Test Go'
         run: curl localhost:8080
