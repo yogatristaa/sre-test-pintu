@@ -40,7 +40,7 @@ jobs:
         run: curl localhost:8080
       
       - name: 'Kill Go Service'
-        run: killall go-service
+        run: killall main
 
       - name: 'Build & Run Node.js'
         run: |
