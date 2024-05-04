@@ -46,7 +46,7 @@ jobs:
         working-directory: ./node-service
         run: |
           npm install
-          node service.js 
+          node service.js &
           sleep 5
 
       - name: 'Test Go'
