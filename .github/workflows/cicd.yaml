@@ -27,7 +27,7 @@ jobs:
 
       - name: 'Build & Run Go'
         run: |
-          go build -o go-service go-service/go-service.go
+          go build -o go-service ./go-service/go-service.go
           ./go-service &
           sleep 5
 
