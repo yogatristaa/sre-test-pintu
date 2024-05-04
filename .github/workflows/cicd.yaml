@@ -44,6 +44,7 @@ jobs:
 
       - name: 'Build & Run Node.js'
         run: |
+          set -e 
           cd node-service
           npm install
           node service.js 
