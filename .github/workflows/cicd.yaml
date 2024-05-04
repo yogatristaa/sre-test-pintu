@@ -27,8 +27,8 @@ jobs:
 
       - name: 'Build & Run Go'
         run: |
-          go build -o go-service go-service/main.go
-          ./go-service &
+          go build -o main go-service/main.go
+          ./main &
           sleep 15
 
       - name: 'Test Go'
