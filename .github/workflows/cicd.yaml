@@ -76,3 +76,9 @@ jobs:
       - name: 'Docker Image Build Node.js'
         working-directory: ./node-service
         run: docker build -t yogatrista/sre-test-pintu:node .
+
+      - name: 'Docker Go Push to Docker Hub'
+        run: docker push yogatrista/sre-test-pintu:go
+
+      - name: 'Docker Node.js Push to Docker Hub'
+        run: docker push yogatrista/sre-test-pintu:node
