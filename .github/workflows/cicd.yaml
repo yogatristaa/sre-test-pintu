@@ -70,15 +70,19 @@ jobs:
         run: echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin
 
       - name: 'Docker Image Build Go'
+        continue-on-error: true
         working-directory: ./go-service
         run: docker build -t yogatrista/sre-test-pintu:go .
 
-      - name: 'Docker Image Build Node.js'
+      - name: 'Docker Image Build Node'
+        continue-on-error: true
         working-directory: ./node-service
         run: docker build -t yogatrista/sre-test-pintu:node .
 
       - name: 'Docker Go Push to Docker Hub'
+        if: steps.Docker_Image_Build_Go.outcome == 'success'
         run: docker push yogatrista/sre-test-pintu:go
 
       - name: 'Docker Node.js Push to Docker Hub'
+        if: steps.Docker_Image_Build_Node.outcome == 'success'
         run: docker push yogatrista/sre-test-pintu:node
