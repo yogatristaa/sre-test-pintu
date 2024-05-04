@@ -6,7 +6,6 @@ COPY . .
 
 RUN go build -o main main.go
 
-
 FROM alpine
 
 WORKDIR /app
