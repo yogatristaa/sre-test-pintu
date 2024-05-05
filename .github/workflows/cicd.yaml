@@ -1,10 +1,6 @@
 name: "CI/CD"
 
 on:
-  push:
-    branches:
-      - main
-
   pull_request:
     branches:
       - main
@@ -14,7 +10,7 @@ on:
 
 jobs:
   build-and-test:
-    # if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
@@ -57,7 +53,7 @@ jobs:
           pkill -f service.js
 
   build-image:
-    # if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
