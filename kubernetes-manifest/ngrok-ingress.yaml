@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: service-ingress
+  namespace: sre-test-pintu
+spec:
+  ingressClassName: ngrok
+  rules:
+    - host: cockatoo-included-bison.ngrok-free.app
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: node-service
+                port:
+                  number: 8080
+          - path: /go
+            pathType: Prefix
+            backend:
+              service:
+                name: go-service
+                port:
+                  number: 8080
